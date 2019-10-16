@@ -83,11 +83,13 @@ open class CountryPickerController: UIViewController {
     public var isCountryDialHidden: Bool = false {
         didSet { self.tableView.reloadData() }
     }
+
+    public var navigationBarLeftButtonSystemItemType: UIBarButtonItem.SystemItem = .stop
     
     internal var checkMarkImage: UIImage? {
         return UIImage(named: "tickMark", in: bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
     }
-    
+
     // MARK: - View life cycle
     fileprivate func setUpsSearchController() {
         searchController.hidesNavigationBarDuringPresentation = true
@@ -110,7 +112,7 @@ open class CountryPickerController: UIViewController {
         view.backgroundColor = UIColor.white
         
         // Setup view bar buttons
-        let uiBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(CountryPickerController.crossButtonClicked(_:)))
+        let uiBarButtonItem = UIBarButtonItem(barButtonSystemItem: navigationBarLeftButtonSystemItemType, target: self, action: #selector(CountryPickerController.crossButtonClicked(_:)))
         navigationItem.leftBarButtonItem = uiBarButtonItem
         
         // Setup table view and cells
